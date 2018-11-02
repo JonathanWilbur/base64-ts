@@ -1,7 +1,4 @@
 export
-const BASE_64_CHARACTERS : string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-export
 const CHAR_CODE_TO_BASE64_VALUE : { [ charCode : number ] : number } = {
     65 :  0,
     66 :  1,
@@ -69,8 +66,8 @@ const CHAR_CODE_TO_BASE64_VALUE : { [ charCode : number ] : number } = {
     47 : 63,
 
     // This is to support Base64URL, as specified in the IETF's RFC 4648.
-   45 : 62,
-   95 : 63
+    45 : 62,
+    95 : 63
 };
 
 export
