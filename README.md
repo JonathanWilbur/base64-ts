@@ -10,17 +10,22 @@
 
 You can build this library by running:
 
-* `npm run-script build`
-* `make -f build/Makefile`
+* `webpack --config build/webpack/web.webpack.js`
+* `webpack --config build/webpack/node.webpack.js`
 
 The outputs will all be in `dist`.
 
-* `dist/web/pem.js` is the entire ASN.1 library for the web browser, which is not minified.
-* `dist/node/pem.js` is the entire NodeJS library.
+* `./dist/base64.web.min.js` is the entire library for the web browser, which is minified.
+* `./dist/base64.node.js` is the entire NodeJS library.
 
 ## Library Usage
 
-## See Also
+There are two functions: `encode` and `decode`. See the declaration below:
+
+```typescript
+export declare function decode(base64: string): Uint8Array;
+export declare function encode(bytes: Uint8Array): string;
+```
 
 ## Contact Me
 
