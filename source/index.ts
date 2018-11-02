@@ -40,20 +40,21 @@ function decode (base64 : string) : Uint8Array {
         i += 4;
     }
 
-    if (paddingLength === 2) {
+    if (paddingLength > 2) {
+        throw new Error("Invalid number of padding bytes returned for Base64 string.");
+    } else if (paddingLength === 2) {
         temp =
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i)] << 2) |
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 1)] >> 4)
-        ret[currentByte++] = temp & 0xFF
+        ret[currentByte++] = (temp & 0xFF);
     } else if (paddingLength === 1) {
         temp =
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i    )] << 10) |
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 1)] <<  4) |
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 2)] >>  2)
-        ret[currentByte++] = (temp >> 8) & 0xFF
-        ret[currentByte++] = (temp     ) & 0xFF
-    } else
-        throw new Error("Invalid number of padding bytes returned for Base64 string.");
+        ret[currentByte++] = ((temp >> 8) & 0xFF);
+        ret[currentByte++] = ((temp     ) & 0xFF);
+    }
 
     return ret;
 }
@@ -78,7 +79,7 @@ function encode (bytes : Uint8Array) : string {
                 ((bytes[i    ] << 16) & 0xFF0000) +
                 ((bytes[i + 1] <<  8) &   0xFF00) +
                 ((bytes[i + 2]      ) &     0xFF)
-            ))
+            ));
         }
 
         if (numberOfModularBytes === 1) {

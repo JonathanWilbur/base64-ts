@@ -280,22 +280,23 @@ function decode(base64) {
         ret[currentByte++] = ((temp) & 0xFF);
         i += 4;
     }
-    if (paddingLength === 2) {
+    if (paddingLength > 2) {
+        throw new Error("Invalid number of padding bytes returned for Base64 string.");
+    }
+    else if (paddingLength === 2) {
         temp =
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i)] << 2) |
                 (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 1)] >> 4);
-        ret[currentByte++] = temp & 0xFF;
+        ret[currentByte++] = (temp & 0xFF);
     }
     else if (paddingLength === 1) {
         temp =
             (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i)] << 10) |
                 (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 1)] << 4) |
                 (CHAR_CODE_TO_BASE64_VALUE[base64.charCodeAt(i + 2)] >> 2);
-        ret[currentByte++] = (temp >> 8) & 0xFF;
-        ret[currentByte++] = (temp) & 0xFF;
+        ret[currentByte++] = ((temp >> 8) & 0xFF);
+        ret[currentByte++] = ((temp) & 0xFF);
     }
-    else
-        throw new Error("Invalid number of padding bytes returned for Base64 string.");
     return ret;
 }
 function tripletToBase64(num) {
