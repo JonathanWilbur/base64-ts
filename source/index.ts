@@ -16,13 +16,19 @@ function paddingLengthOf (base64 : string, encodingLength? : number) : number {
     return ((encodingLength === base64.length) ? 0 : (4 - (encodingLength % 4)));
 }
 
+function lengthOfEncodedDataIn (base64 : string) : number {
+    const encodingLength : number = encodingLengthOf(base64);
+    const paddingLength : number = paddingLengthOf(base64, encodingLength);
+    return (((encodingLength + paddingLength) * 0.75) - paddingLength);
+}
+
 export
 function decode (base64 : string) : Uint8Array {
     if (base64.length % 4 > 0)
         throw new Error("Base64 string with length not divisible by four.");
     const encodingLength : number = encodingLengthOf(base64);
     const paddingLength : number = paddingLengthOf(base64, encodingLength);
-    const ret : Uint8Array = new Uint8Array(encodingLength);
+    const ret : Uint8Array = new Uint8Array(lengthOfEncodedDataIn(base64));
     let currentByte : number = 0;
     const fullQuartetsLength : number = (paddingLength ? (encodingLength - 4) : encodingLength);
 
