@@ -1,22 +1,15 @@
 # Base64 TypeScript Library
 
 * Author: [Jonathan M. Wilbur](https://jonathan.wilbur.space) <[jonathan@wilbur.space](mailto:jonathan@wilbur.space)>
-* Copyright Year: 2018
+* Copyright Year: 2019
 * License: [MIT License](https://mit-license.org/)
-* Version: _See `version` file or git tags._
 * Platform: NodeJS or Modern Web Browsers
 
 ## Building
 
-You can build this library by running:
-
-* `webpack --config build/webpack/web.webpack.js`
-* `webpack --config build/webpack/node.webpack.js`
+You can build this library by running `npm run build`.
 
 The outputs will all be in `dist`.
-
-* `./dist/base64.web.min.js` is the entire library for the web browser, which is minified.
-* `./dist/base64.node.js` is the entire NodeJS library.
 
 ## Library Usage
 
@@ -26,6 +19,8 @@ There are two functions: `encode` and `decode`. See the declaration below:
 export declare function decode(base64: string): Uint8Array;
 export declare function encode(bytes: Uint8Array): string;
 ```
+
+`decode` _does not_ tolerate whitespace. _Only_ base-64 characters must be supplied.
 
 ## Contact Me
 

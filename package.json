@@ -1,36 +1,61 @@
 {
-  "author": "Jonathan M. Wilbur <jonathan@wilbur.space>",
-  "bugs": {
-    "url": "https://github.com/JonathanWilbur/base64-ts/issues"
-  },
-  "description": "Base64 Encoding and Decoding in TypeScript",
-  "devDependencies": {
-    "ts-loader": "^5.3.0",
-    "webpack": "^4.23.1"
-  },
-  "directories": {
-    "doc": "documentation"
-  },
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://github.com/JonathanWilbur/base64-ts#readme",
-  "keywords": [
-    "Base64",
-    "Base",
-    "Encoding",
-    "Decoding"
-  ],
-  "license": "MIT",
-  "main": "dist/base64.node.js",
-  "name": "base64-ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JonathanWilbur/base64-ts.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "types": "./dist/index.d.ts",
-  "version": "1.0.3"
+    "bugs": {
+        "email": "jonathan@wilbur.space"
+    },
+    "contributors": [
+        {
+            "email": "jonathan@wilbur.space",
+            "name": "Jonathan M. Wilbur",
+            "url": "https://github.com/JonathanWilbur"
+        }
+    ],
+    "description": "Base64 Encoding and Decoding in TypeScript",
+    "devDependencies": {
+        "@babel/core": "^7.6.0",
+        "@babel/preset-env": "^7.6.0",
+        "@babel/preset-typescript": "^7.6.0",
+        "@types/node": "^12.7.4",
+        "@typescript-eslint/eslint-plugin": "^2.1.0",
+        "@typescript-eslint/parser": "^2.1.0",
+        "babel-jest": "^24.9.0",
+        "eslint": "^6.3.0",
+        "jest": "^24.9.0",
+        "jest-junit": "^7.0.0",
+        "serverless": "^1.51.0",
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.6.2",
+        "webpack": "^4.39.3",
+        "webpack-cli": "^3.3.8"
+    },
+    "directories": {
+        "doc": "documentation",
+        "test": "test"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "homepage": "https://github.com/JonathanWilbur/base64-ts#readme",
+    "keywords": [
+        "Base64",
+        "Base",
+        "Encoding",
+        "Decoding"
+    ],
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "name": "base64-ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JonathanWilbur/base64-ts.git"
+    },
+    "scripts": {
+        "build": "npx tsc && npx webpack",
+        "clean": "rm -rf dist; mkdir -p dist",
+        "deploy-functions": "npx sls deploy",
+        "lint": "npx eslint --config .eslintrc.yml './source/**/*.ts' || true",
+        "remove-functions": "npx sls remove",
+        "test": "npx jest --ci --reporters=default --reporters=jest-junit"
+    },
+    "types": "./dist/index.d.ts",
+    "version": "1.0.4"
 }
